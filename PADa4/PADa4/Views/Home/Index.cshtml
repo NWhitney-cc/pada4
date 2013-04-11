@@ -1,0 +1,49 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        $("h1[id=response]").html("test");
+        $("input[id=checkCode]").click(function () {
+            $.ajax({
+                url: '~/api/FiringCode/CheckCode/?code=' + $("input[id=code").val(),
+                type: 'GET',
+                dataType: 'json',
+                success: onSuccess,
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+            alert("after")
+        });
+    });
+    function onSuccess(data) {
+        $.each(data, function (key, val) {
+            $("h1[id=response").html(val);
+        });
+    }
+</script>
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/">Portable Application Development Assignment 4</a>
+            </p>
+        </div>
+    </div>
+</header>
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Fire Code Tester</h1>
+            </hgroup>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        Enter fire code here:
+        <input id="code" type="text" />
+        <br />
+        <input id="checkCode" type="button" value="Test Code" />
+        <br />
+        <br />
+        <h1 id="response" />
+    </section>
+</div>
